@@ -5,17 +5,17 @@ from gendiff import generate_diff
 
 @pytest.fixture
 def file1():
-    return os.path.join('fixtures', 'file1.json')
+    return os.path.join('tests', 'fixtures', 'file1.json')
 
 
 @pytest.fixture
 def file2():
-    return os.path.join('fixtures', 'file2.json')
+    return os.path.join('tests', 'fixtures', 'file2.json')
 
 
 @pytest.fixture
 def result():
-    file = open(os.path.join('fixtures', 'result_plain_json.txt'))
+    file = open(os.path.join('tests', 'fixtures', 'result_plain_json.txt'))
     result = file.read()
     return result
 
