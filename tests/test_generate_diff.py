@@ -1,6 +1,6 @@
 import pytest
 import os
-from gendiff.gen_diff import generate_diff
+from gendiff import generate_diff
 
 
 @pytest.fixture

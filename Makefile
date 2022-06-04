@@ -18,3 +18,6 @@ lint:
 
 test:
 	poetry run pytest
+
+test-coverage:
+	poetry run coverage report -m
