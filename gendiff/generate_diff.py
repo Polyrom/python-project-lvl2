@@ -21,8 +21,15 @@ def generate_diff(first_file, second_file):
     for key in file2_unique_keys:
         diff[f'+ {key}'] = file2[key]
     diff_sorted = dict()
-    for key in sorted(diff, key=lambda item: item.replace("- ", "").replace("+ ", "").replace("  ", "")):
+    for key in sorted(
+            diff,
+            key=lambda item:
+            item.replace("- ", "").replace("+ ", "").replace("  ", "")
+    ):
         diff_sorted[key] = diff[key]
     diff_string = json.dumps(diff_sorted)
-    diff_string_correct = diff_string.replace(',', "\n").replace('"', '').replace('{', '{\n ').replace('}', '\n}')
+    diff_string_correct = (
+        diff_string.replace(',', "\n").replace('"', '')
+        .replace('{', '{\n ').replace('}', '\n}')
+    )
     return diff_string_correct
