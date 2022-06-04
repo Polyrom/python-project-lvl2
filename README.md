@@ -4,8 +4,5 @@
 ### GitHUb Actions Flake8 badge:
 [![linter-check](https://github.com/Polyrom/python-project-lvl2/actions/workflows/linter-check.yml/badge.svg)](https://github.com/Polyrom/python-project-lvl2/actions/workflows/linter-check.yml)
 
-### GitHUb Actions Pytest badge:
-[![pytest-check](https://github.com/Polyrom/python-project-lvl2/actions/workflows/pytest.yml/badge.svg)](https://github.com/Polyrom/python-project-lvl2/actions/workflows/pytest.yml)
-
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Polyrom/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Polyrom/python-project-lvl2/actions)
