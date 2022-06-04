@@ -1,4 +1,4 @@
-name: pytest-check
+name: tests
 
 on: push
 
@@ -20,7 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - name: Install Python
+      uses: actions/setup-python@v3
+    - name: Install Dependencies
       run:  pip install poetry
             make install
     - uses: paambaati/codeclimate-action@v3.0.0
