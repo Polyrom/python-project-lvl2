@@ -1,4 +1,4 @@
-name: tests
+name: Pytest check
 
 on:
   - push
@@ -6,19 +6,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, 3.10.0]
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Python
-        uses: actions/setup-python@v3
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: install poetry
         run:  pip install poetry
-      - name: Install dependencies
-        run:  make install
-      - name: Run Pytest
+      - name: install dependencies
+        run:
+          make install
+      - name: run pytest
         run:
           make test
       - name: test & publish code coverage
-        uses: paambaati/codeclimate-action@v3.0.0
+        uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
