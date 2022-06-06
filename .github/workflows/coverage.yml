@@ -5,9 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
             - name: chekout repo
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
             - name: setup python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v3
             - name: Install dependencies
               run: |
                   pip install poetry
@@ -15,7 +15,7 @@ jobs:
             - name: codeclimate upload
               uses: paambaati/codeclimate-action@v3.0.0
               env:
-                CC_TEST_REPORTER_ID: efc8df94636b76cb7fb0afd82d7e7822f8c6fceef839c00877f3ffe2b5222a3b
+                CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
               with:
                 coverageCommand: make test-coverage
                 debug: true
