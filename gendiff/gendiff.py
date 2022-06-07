@@ -1,9 +1,10 @@
 import json
+from gendiff.parser import parse_files
 
 
 def generate_diff(first_file, second_file):
-    file1 = json.load(open(first_file))
-    file2 = json.load(open(second_file))
+    file1 = parse_files(first_file)
+    file2 = parse_files(second_file)
     file1_set = set(file1)
     file2_set = set(file2)
     diff = dict()
