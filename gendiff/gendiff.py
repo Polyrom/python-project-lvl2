@@ -1,36 +1,41 @@
-import json
-from gendiff.parser import parse_files
-
-
-def generate_diff(first_file, second_file):
-    file1 = parse_files(first_file)
-    file2 = parse_files(second_file)
-    file1_set = set(file1)
-    file2_set = set(file2)
-    diff = dict()
-    common_keys = file1_set & file2_set
-    file1_unique_keys = file1_set - file2_set
-    file2_unique_keys = file2_set - file1_set
-    for key in common_keys:
-        if key in file1 and file1[key] == file2[key]:
-            diff[f'  {key}'] = file1[key]
+def generate_diff(dictionary1, dictionary2):
+    tree = []
+    for key in sorted({**dictionary1, **dictionary2}):
+        if isinstance(dictionary1.get(key), dict) and isinstance(dictionary2.get(key), dict):
+            node = {
+                'key': key,
+                'type': 'nested',
+                'children': generate_diff(dictionary1.get(key), dictionary2.get(key))
+            }
+            tree.append(node)
         else:
-            diff[f'- {key}'] = file1[key]
-            diff[f'+ {key}'] = file2[key]
-    for key in file1_unique_keys:
-        diff[f'- {key}'] = file1[key]
-    for key in file2_unique_keys:
-        diff[f'+ {key}'] = file2[key]
-    diff_sorted = dict()
-    for key in sorted(
-            diff,
-            key=lambda item:
-            item.replace("- ", "").replace("+ ", "").replace("  ", "")
-    ):
-        diff_sorted[key] = diff[key]
-    diff_string = json.dumps(diff_sorted)
-    diff_string_correct = (
-        diff_string.replace(',', "\n").replace('"', '')
-        .replace('{', '{\n ').replace('}', '\n}')
-    )
-    return diff_string_correct
+            if key in dictionary1 and key not in dictionary2:
+                node = {
+                    'key': key,
+                    'type': 'removed',
+                    'value': dictionary1.get(key)
+                }
+                tree.append(node)
+            elif key in dictionary2 and key not in dictionary1:
+                node = {
+                    'key': key,
+                    'type': 'added',
+                    'value': dictionary2.get(key)
+                }
+                tree.append(node)
+            elif dictionary1.get(key) == dictionary2.get(key):
+                node = {
+                    'key': key,
+                    'type': 'unchanged',
+                    'value': dictionary1.get(key)
+                }
+                tree.append(node)
+            else:
+                node = {
+                    'key': key,
+                    'type': 'changed',
+                    'value1': dictionary1.get(key),
+                    'value2': dictionary2.get(key)
+                }
+                tree.append(node)
+    return tree
