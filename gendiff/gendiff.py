@@ -1,11 +1,14 @@
 def generate_diff(dictionary1, dictionary2):
     tree = []
     for key in sorted({**dictionary1, **dictionary2}):
-        if isinstance(dictionary1.get(key), dict) and isinstance(dictionary2.get(key), dict):
+        if isinstance(dictionary1.get(key), dict) \
+                and isinstance(dictionary2.get(key), dict):
             node = {
                 'key': key,
                 'type': 'nested',
-                'children': generate_diff(dictionary1.get(key), dictionary2.get(key))
+                'children': (
+                    generate_diff(dictionary1.get(key), dictionary2.get(key))
+                )
             }
             tree.append(node)
         else:

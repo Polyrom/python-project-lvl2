@@ -11,11 +11,17 @@ def main():
     )
     parser.add_argument("first_file")
     parser.add_argument("second_file")
-    parser.add_argument("-f", "--format", help="set format of output")
+    stylish = format_stylish
+    parser.add_argument(
+        "-f", "--format",
+        help="set format of output",
+        default=stylish
+    )
     args = parser.parse_args()
     file1 = parse_files(args.first_file)
     file2 = parse_files(args.second_file)
-    return format_stylish(generate_diff(file1, file2))
+    formatter = args.format
+    return formatter(generate_diff(file1, file2))
 
 
 if __name__ == '__main__':

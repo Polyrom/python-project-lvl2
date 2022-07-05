@@ -5,7 +5,7 @@ package-install:
 	python3 -m pip install --user dist/*.whl
 
 package-reinstall:
-	python3 -m pip install --user --force-reinstall dist/*.whl
+	python3 -m pip install --user --force-reinstall dist/hexlet_code-0.1.1-py3-none-any.whl
 
 selfcheck:
 	poetry check
