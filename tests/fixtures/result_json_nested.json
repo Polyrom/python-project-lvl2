@@ -1,0 +1,63 @@
+{
+    "Nested: common": {
+        "Added: follow": false,
+        "Unchanged: setting1": "Value 1",
+        "Removed: setting2": 200,
+        "Removed: setting3": true,
+        "Added: setting3": {
+            "key": "value"
+        },
+        "Added: setting4": "blah blah",
+        "Added: setting5": {
+            "key5": "value5"
+        },
+        "Nested: setting6": {
+            "Nested: doge": {
+                "Removed: wow": "too much",
+                "Added: wow": "so much"
+            },
+            "Unchanged: key": "value",
+            "Added: ops": "vops"
+        }
+    },
+    "Nested: group1": {
+        "Removed: baz": "bas",
+        "Added: baz": "bars",
+        "Unchanged: foo": "bar",
+        "Removed: nest": {
+            "key": "value"
+        },
+        "Added: nest": "str"
+    },
+    "Removed: group2": {
+        "abc": 12345,
+        "deep": {
+            "id": 45
+        }
+    },
+    "Added: group3": {
+        "deep": {
+            "id": {
+                "number": 45
+            }
+        },
+        "fee": 100500
+    },
+    "Nested: group4": {
+        "Removed: default": null,
+        "Added: default": "",
+        "Removed: foo": 0,
+        "Added: foo": null,
+        "Removed: isNested": false,
+        "Added: isNested": "none",
+        "Added: key": false,
+        "Nested: nest": {
+            "Removed: bar": "",
+            "Added: bar": 0,
+            "Removed: isNested": true
+        },
+        "Added: someKey": true,
+        "Removed: type": "bas",
+        "Added: type": "bar"
+    }
+}

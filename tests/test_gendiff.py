@@ -4,6 +4,7 @@ from gendiff import generate_internal_representation
 from gendiff.parser import parse_files
 from gendiff.formatters.stylish import format_stylish
 from gendiff.formatters.plain import format_plain
+from gendiff.formatters.json import format_json
 
 
 @pytest.fixture
@@ -74,6 +75,20 @@ def result_plain_nested():
     return result_plain_nested
 
 
+@pytest.fixture
+def result_json():
+    file = open(os.path.join('tests', 'fixtures', 'result_json.json'))
+    result_json = file.read()
+    return result_json
+
+
+@pytest.fixture
+def result_json_nested():
+    file = open(os.path.join('tests', 'fixtures', 'result_json_nested.json'))
+    result_json_nested = file.read()
+    return result_json_nested
+
+
 def test_generate_diff_json(file1_json, file2_json, result_stylish):
     assert format_stylish(generate_internal_representation(file1_json, file2_json)) == result_stylish
 
@@ -100,3 +115,11 @@ def test_plain_formatter(file1_json, file2_yaml, result_plain):
 
 def test_plain_formatter_nested(file1_json_nested, file2_yml_nested, result_plain_nested):
     assert format_plain(generate_internal_representation(file1_json_nested, file2_yml_nested)) == result_plain_nested
+
+
+def test_json_formatter(file1_json, file2_yaml, result_json):
+    assert format_json(generate_internal_representation(file1_json, file2_yaml)) == result_json
+
+
+def test_json_formatter_nested(file1_json_nested, file2_yml_nested, result_json_nested):
+    assert format_json(generate_internal_representation(file1_json_nested, file2_yml_nested)) == result_json_nested
