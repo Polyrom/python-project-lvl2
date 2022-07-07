@@ -17,7 +17,7 @@ def main():
     file1 = args.first_file
     file2 = args.second_file
     formatter = args.format
-    return generate_diff(file1, file2, formatter)
+    return print(generate_diff(file1, file2, formatter))
 
 
 if __name__ == '__main__':
