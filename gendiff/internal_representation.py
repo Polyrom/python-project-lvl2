@@ -1,4 +1,4 @@
-def generate_diff(dictionary1, dictionary2):
+def generate_internal_representation(dictionary1, dictionary2):
     tree = []
     for key in sorted({**dictionary1, **dictionary2}):
         if isinstance(dictionary1.get(key), dict) \
@@ -7,7 +7,8 @@ def generate_diff(dictionary1, dictionary2):
                 'key': key,
                 'type': 'nested',
                 'children': (
-                    generate_diff(dictionary1.get(key), dictionary2.get(key))
+                    generate_internal_representation(dictionary1.get(key),
+                                                     dictionary2.get(key))
                 )
             }
             tree.append(node)

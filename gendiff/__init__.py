@@ -1,4 +1,4 @@
-from gendiff.gendiff import generate_diff
-from gendiff.parser import parse_files
+from gendiff.internal_representation import generate_internal_representation
+from gendiff.generate_diff import generate_diff
 
-__all__ = ['generate_diff', 'parse_files']
+__all__ = ['generate_internal_representation', 'generate_diff']

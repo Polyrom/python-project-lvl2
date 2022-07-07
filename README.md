@@ -3,4 +3,4 @@
 
 
 ### How it works
-[![asciicast](https://asciinema.org/a/bNvUJoRfHWJ4WWIBnmAiZFNDv.svg)](https://asciinema.org/a/bNvUJoRfHWJ4WWIBnmAiZFNDv)
+[![asciicast](https://asciinema.org/a/vQOstVbUpxVJSKfnbLA4y1uYh.svg)](https://asciinema.org/a/vQOstVbUpxVJSKfnbLA4y1uYh)
