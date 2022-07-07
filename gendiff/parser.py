@@ -1,9 +1,11 @@
 import json
 import yaml
+from pathlib import Path
 
 
 def parse_files(filepath):
-    if filepath.endswith('.json'):
+    filename = Path(filepath)
+    if filename.suffix == '.json':
         return json.load(open(filepath))
-    if filepath.endswith('.yaml') or filepath.endswith('.yml'):
+    if filename.suffix == '.yml' or filename.suffix == '.yaml':
         return yaml.safe_load(open(filepath))
