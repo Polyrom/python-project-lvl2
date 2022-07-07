@@ -89,37 +89,37 @@ def result_json_nested():
     return result_json_nested
 
 
-def test_generate_diff_json(file1_json, file2_json, result_stylish):
+def test_stylish(file1_json, file2_json, result_stylish):
     assert format_stylish(generate_internal_representation(file1_json, file2_json)) == result_stylish
 
 
-def test_generate_diff_yaml(file1_yml, file2_yaml, result_stylish):
+def test_stylish_yaml(file1_yml, file2_yaml, result_stylish):
     assert format_stylish(generate_internal_representation(file1_yml, file2_yaml)) == result_stylish
 
 
-def test_generate_diff_yaml_json(file1_yml, file2_json, result_stylish):
+def test_stylish_yaml_json(file1_yml, file2_json, result_stylish):
     assert format_stylish(generate_internal_representation(file1_yml, file2_json)) == result_stylish
 
 
-def test_generate_diff_nested_json(file1_json_nested, file2_json_nested, result_stylish_nested):
+def test_stylish_nested_json(file1_json_nested, file2_json_nested, result_stylish_nested):
     assert format_stylish(generate_internal_representation(file1_json_nested, file2_json_nested)) == result_stylish_nested
 
 
-def test_generate_diff_nested_yaml(file1_yml_nested, file2_yml_nested, result_stylish_nested):
-    assert format_stylish(generate_internal_representation(file1_yml_nested, file2_yml_nested)) == result_stylish_nested
+def test_stylish_nested_yaml_json(file1_json_nested, file2_yml_nested, result_stylish_nested):
+    assert format_stylish(generate_internal_representation(file1_json_nested, file2_yml_nested)) == result_stylish_nested
 
 
-def test_plain_formatter(file1_json, file2_yaml, result_plain):
+def test_plain(file1_json, file2_yaml, result_plain):
     assert format_plain(generate_internal_representation(file1_json, file2_yaml)) == result_plain
 
 
-def test_plain_formatter_nested(file1_json_nested, file2_yml_nested, result_plain_nested):
+def test_plain_nested(file1_json_nested, file2_yml_nested, result_plain_nested):
     assert format_plain(generate_internal_representation(file1_json_nested, file2_yml_nested)) == result_plain_nested
 
 
-def test_json_formatter(file1_json, file2_yaml, result_json):
+def test_json(file1_json, file2_yaml, result_json):
     assert format_json(generate_internal_representation(file1_json, file2_yaml)) == result_json
 
 
-def test_json_formatter_nested(file1_json_nested, file2_yml_nested, result_json_nested):
+def test_json_nested(file1_json_nested, file2_yml_nested, result_json_nested):
     assert format_json(generate_internal_representation(file1_json_nested, file2_yml_nested)) == result_json_nested
