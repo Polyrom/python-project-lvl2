@@ -1,9 +1,6 @@
 import pytest
 import os
 from gendiff import generate_diff
-from gendiff.formatters.stylish import format_stylish
-from gendiff.formatters.plain import format_plain
-from gendiff.formatters.json import format_json
 
 
 file1_json = os.path.join('tests', 'fixtures', 'file1.json')
