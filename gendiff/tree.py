@@ -1,45 +1,45 @@
-def generate_internal_representation(dictionary1, dictionary2):
+def make_diff_tree(data1, data2):
     tree = []
-    for key in sorted({**dictionary1, **dictionary2}):
-        if isinstance(dictionary1.get(key), dict) \
-                and isinstance(dictionary2.get(key), dict):
+    for key in sorted({**data1, **data2}):
+        if isinstance(data1.get(key), dict) \
+                and isinstance(data2.get(key), dict):
             node = {
                 'key': key,
                 'type': 'nested',
                 'children': (
-                    generate_internal_representation(dictionary1.get(key),
-                                                     dictionary2.get(key))
+                    make_diff_tree(data1.get(key),
+                                   data2.get(key))
                 )
             }
             tree.append(node)
         else:
-            if key in dictionary1 and key not in dictionary2:
+            if key in data1 and key not in data2:
                 node = {
                     'key': key,
                     'type': 'removed',
-                    'value': dictionary1.get(key)
+                    'value': data1.get(key)
                 }
                 tree.append(node)
-            elif key in dictionary2 and key not in dictionary1:
+            elif key in data2 and key not in data1:
                 node = {
                     'key': key,
                     'type': 'added',
-                    'value': dictionary2.get(key)
+                    'value': data2.get(key)
                 }
                 tree.append(node)
-            elif dictionary1.get(key) == dictionary2.get(key):
+            elif data1.get(key) == data2.get(key):
                 node = {
                     'key': key,
                     'type': 'unchanged',
-                    'value': dictionary1.get(key)
+                    'value': data1.get(key)
                 }
                 tree.append(node)
             else:
                 node = {
                     'key': key,
                     'type': 'changed',
-                    'value1': dictionary1.get(key),
-                    'value2': dictionary2.get(key)
+                    'value1': data1.get(key),
+                    'value2': data2.get(key)
                 }
                 tree.append(node)
     return tree

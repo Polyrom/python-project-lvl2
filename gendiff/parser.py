@@ -1,12 +1,15 @@
-import json
-import yaml
 from pathlib import Path, PurePath
 
 
-def parse_files(filepath):
+def parse_file(filepath):
     file_split = PurePath(filepath).parts
     filename = Path(*file_split)
     if filename.suffix == '.json':
-        return json.load(open(filepath))
-    if filename.suffix == '.yml' or filename.suffix == '.yaml':
-        return yaml.safe_load(open(filepath))
+        file = 'json'
+    elif filename.suffix == '.yaml' \
+            or filename.suffix == '.yml':
+        file = 'yml'
+    else:
+        raise Exception("Wrong file format. "
+                        "Make sure compared files are JSON or YAML/YML.")
+    return file

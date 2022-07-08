@@ -1,7 +1,7 @@
 import json
 
 
-def format_value(val):
+def to_str(val):
     if isinstance(val, dict):
         new_val = '[complex value]'
         return new_val
@@ -15,7 +15,7 @@ def format_value(val):
         return val
 
 
-def format_plain(diff, path=''):
+def preformat_plain(diff, path):
     plain_list = []
     for node in diff:
         node_children = node.get('children')
@@ -27,16 +27,21 @@ def format_plain(diff, path=''):
         if node_type == 'added':
             plain_list.append(
                 f'Property \'{path + node_key}\' '
-                f'was added with value: {format_value(node_value)}'
+                f'was added with value: {to_str(node_value)}'
             )
         if node_type == 'removed':
             plain_list.append(f'Property \'{path+node_key}\' was removed')
         if node_type == 'changed':
             plain_list.append(
                 f'Property \'{path + node_key}\' was updated. '
-                f'From {format_value(old_value)} to {format_value(new_value)}'
+                f'From {to_str(old_value)} to {to_str(new_value)}'
             )
         if node_type == 'nested':
             new_path = f'{path}{node_key}.'
-            plain_list.append(format_plain(node_children, new_path))
+            plain_list.append(preformat_plain(node_children, new_path))
     return '\n'.join(plain_list)
+
+
+def format_plain(diff):
+    plain = preformat_plain(diff, '')
+    return plain
