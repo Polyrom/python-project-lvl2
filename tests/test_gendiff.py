@@ -27,16 +27,16 @@ result_json_nested = open(os.path.join('tests', 'fixtures', 'result_json_nested.
 @pytest.mark.parametrize("diff, stylish_result", [(generate_diff(file1_json, file2_yaml), result_stylish),
                                                   (generate_diff(file3_json, file4_yml), result_stylish_nested)])
 def test_stylish_formatter(diff, stylish_result):
-    assert format_stylish(diff) == stylish_result
+    assert diff == stylish_result
 
 
-@pytest.mark.parametrize("diff, plain_result", [(generate_diff(file1_yml, file2_json), result_plain),
-                                                (generate_diff(file3_yml, file4_json), result_plain_nested)])
+@pytest.mark.parametrize("diff, plain_result", [(generate_diff(file1_yml, file2_json, 'plain'), result_plain),
+                                                (generate_diff(file3_yml, file4_json, 'plain'), result_plain_nested)])
 def test_plain_formatter(diff, plain_result):
-    assert format_plain(diff) == plain_result
+    assert diff == plain_result
 
 
-@pytest.mark.parametrize("diff, json_result", [(generate_diff(file1_yml, file2_yaml), result_json),
-                                               (generate_diff(file3_json, file4_yml), result_json_nested)])
+@pytest.mark.parametrize("diff, json_result", [(generate_diff(file1_yml, file2_yaml, 'json'), result_json),
+                                               (generate_diff(file3_json, file4_yml, 'json'), result_json_nested)])
 def test_json_formatter(diff, json_result):
-    assert format_json(diff) == json_result
+    assert diff == json_result
