@@ -20,5 +20,3 @@ FIXTURE_PATH = os.path.join('tests', 'fixtures')
                                                                 'json', open(FIXTURE_PATH + '/result_json_nested.json').read())])
 def test_stylish_formatter(file1, file2, format_name, result):
     assert generate_diff(file1, file2, format_name) == result
-
-
