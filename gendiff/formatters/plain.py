@@ -3,19 +3,15 @@ import json
 
 def to_str(val):
     if isinstance(val, dict):
-        new_val = '[complex value]'
-        return new_val
+        return '[complex value]'
     elif isinstance(val, bool) or val is None:
-        new_val = json.dumps(val)
-        return new_val
+        return json.dumps(val)
     elif isinstance(val, str):
-        new_val = f"'{val}'"
-        return new_val
-    else:
-        return val
+        return f"'{val}'"
+    return val
 
 
-def preformat_plain(diff, path):
+def preformat_plain(diff, path=''):
     plain_list = []
     for node in diff:
         node_children = node.get('children')
@@ -43,5 +39,4 @@ def preformat_plain(diff, path):
 
 
 def format_plain(diff):
-    plain = preformat_plain(diff, '')
-    return plain
+    return preformat_plain(diff)

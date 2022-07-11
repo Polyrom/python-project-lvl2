@@ -1,4 +1,4 @@
-def make_diff_tree(data1, data2):
+def build_diff(data1, data2):
     tree = []
     for key in sorted({**data1, **data2}):
         if isinstance(data1.get(key), dict) \
@@ -7,8 +7,8 @@ def make_diff_tree(data1, data2):
                 'key': key,
                 'type': 'nested',
                 'children': (
-                    make_diff_tree(data1.get(key),
-                                   data2.get(key))
+                    build_diff(data1.get(key),
+                               data2.get(key))
                 )
             }
             tree.append(node)
