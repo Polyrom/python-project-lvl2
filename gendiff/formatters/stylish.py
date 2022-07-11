@@ -45,7 +45,8 @@ def iter_(current_value, depth, replacer=' ', spaces_count=4):
     for key, val in current_value.items():
         if key.startswith(tuple(value for value in PREFIXES.values())):
             deep_indent = (replacer * deep_indent_size)[2:]
-        lines.append(f'{deep_indent}{key}: {iter_(to_str(val), deep_indent_size)}')
+        lines.append(f'{deep_indent}{key}: '
+                     f'{iter_(to_str(val), deep_indent_size)}')
     result = itertools.chain("{", lines, [current_indent + "}"])
     return '\n'.join(result)
 
