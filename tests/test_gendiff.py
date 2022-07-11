@@ -6,17 +6,13 @@ from gendiff import generate_diff
 FIXTURE_PATH = os.path.join('tests', 'fixtures')
 
 
-@pytest.mark.parametrize("file1, file2, format_name, result", [(FIXTURE_PATH + '/file1.json', FIXTURE_PATH + '/file2.yaml',
-                                                                'stylish', open(FIXTURE_PATH + '/result_stylish').read()),
-                                                               (FIXTURE_PATH + '/file3.json', FIXTURE_PATH + '/file4.yml',
-                                                                'stylish', open(FIXTURE_PATH + '/result_stylish_nested').read()),
-                                                               (FIXTURE_PATH + '/file1.yml', FIXTURE_PATH + '/file2.json',
-                                                                'plain', open(FIXTURE_PATH + '/result_plain').read()),
-                                                               (FIXTURE_PATH + '/file3.yml', FIXTURE_PATH + '/file4.json',
-                                                                'plain', open(FIXTURE_PATH + '/result_plain_nested').read()),
-                                                               (FIXTURE_PATH + '/file1.json', FIXTURE_PATH + '/file2.json',
-                                                                'json', open(FIXTURE_PATH + '/result_json.json').read()),
-                                                               (FIXTURE_PATH + '/file3.yml', FIXTURE_PATH + '/file4.yml',
-                                                                'json', open(FIXTURE_PATH + '/result_json_nested.json').read())])
+@pytest.mark.parametrize("file1, file2, format_name, result",
+                         [('/file1.json', '/file2.yaml', 'stylish', '/result_stylish'),
+                          ('/file3.json', '/file4.yml', 'stylish', '/result_stylish_nested'),
+                          ('/file1.yml', '/file2.json', 'plain', '/result_plain'),
+                          ('/file3.yml', '/file4.json', 'plain', '/result_plain_nested'),
+                          ('/file1.json', '/file2.json', 'json', '/result_json.json'),
+                          ('/file3.yml', '/file4.yml', 'json', '/result_json_nested.json')])
 def test_stylish_formatter(file1, file2, format_name, result):
-    assert generate_diff(file1, file2, format_name) == result
+    assert generate_diff(FIXTURE_PATH + file1, FIXTURE_PATH + file2, format_name) == \
+           open(FIXTURE_PATH + result).read()

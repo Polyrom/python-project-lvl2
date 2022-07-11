@@ -43,7 +43,7 @@ def iter_(current_value, depth, replacer=' ', spaces_count=4):
     current_indent = replacer * depth
     lines = []
     for key, val in current_value.items():
-        if key.startswith(tuple(value for value in PREFIXES.values())):
+        if key.startswith(tuple(prefix for prefix in PREFIXES.values())):
             deep_indent = (replacer * deep_indent_size)[2:]
         lines.append(f'{deep_indent}{key}: '
                      f'{iter_(to_str(val), deep_indent_size)}')
@@ -51,5 +51,5 @@ def iter_(current_value, depth, replacer=' ', spaces_count=4):
     return '\n'.join(result)
 
 
-def format_stylish(value):
-    return iter_(preformat_stylish(value), 0)
+def format_stylish(diff_tree):
+    return iter_(preformat_stylish(diff_tree), 0)

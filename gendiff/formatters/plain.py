@@ -4,9 +4,9 @@ import json
 def to_str(val):
     if isinstance(val, dict):
         return '[complex value]'
-    elif isinstance(val, bool) or val is None:
+    if isinstance(val, bool) or val is None:
         return json.dumps(val)
-    elif isinstance(val, str):
+    if isinstance(val, str):
         return f"'{val}'"
     return val
 
