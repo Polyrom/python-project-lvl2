@@ -24,3 +24,7 @@ test-coverage:
 
 test-coverage-xml:
 	poetry run pytest --cov=gendiff --cov-report xml
+
+reinstall:
+	poetry build
+	python3 -m pip install --user --force-reinstall dist/hexlet_code-0.1.1-py3-none-any.whl

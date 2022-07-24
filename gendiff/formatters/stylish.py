@@ -35,14 +35,14 @@ def to_str(value):
     return value
 
 
-def iter_(current_value, depth, replacer=' ', spaces_count=4):
-    if not isinstance(current_value, dict):
-        return str(current_value)
+def iter_(tree, depth, replacer=' ', spaces_count=4):
+    if not isinstance(tree, dict):
+        return str(tree)
     deep_indent_size = depth + spaces_count
     deep_indent = replacer * deep_indent_size
     current_indent = replacer * depth
     lines = []
-    for key, val in current_value.items():
+    for key, val in tree.items():
         if key.startswith(tuple(prefix for prefix in PREFIXES.values())):
             deep_indent = (replacer * deep_indent_size)[2:]
         lines.append(f'{deep_indent}{key}: '

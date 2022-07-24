@@ -6,11 +6,10 @@ from .json import format_json
 def format_diff(diff, formatter):
     if formatter == 'stylish':
         return format_stylish(diff)
-    elif formatter == 'plain':
+    if formatter == 'plain':
         return format_plain(diff)
-    elif formatter == 'json':
+    if formatter == 'json':
         return format_json(diff)
-    else:
-        raise Exception('Invalid format name.'
-                        'Please select from "stylish", "plain" and "json".'
-                        'See "gendiff -h" for further info.')
+    raise Exception('Invalid format name.'
+                    'Please select from "stylish", "plain" and "json".'
+                    'See "gendiff -h" for further info.')

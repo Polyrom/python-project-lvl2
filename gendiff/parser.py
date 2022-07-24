@@ -4,9 +4,9 @@ import yaml
 
 
 def parse(data, format_name):
-    if format_name == '.json':
+    if format_name == 'json':
         return json.load(open(data))
-    if format_name == '.yml' or format_name == '.yaml':
+    if format_name == 'yml' or format_name == 'yaml':
         return yaml.safe_load(open(data))
     raise Exception("Wrong format name. "
                     "Make sure your files are JSON or YAML/YML.")
@@ -14,4 +14,5 @@ def parse(data, format_name):
 
 def get_content(filepath):
     _, extension = os.path.splitext(filepath)
-    return parse(filepath, extension)
+    file_format = extension.replace('.', '')
+    return parse(filepath, file_format)
