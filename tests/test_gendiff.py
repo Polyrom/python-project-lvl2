@@ -15,5 +15,7 @@ def build_fixture_path(filename):
                           ('file1.json', 'file2.json', 'json', 'result_json.json'),
                           ('file3.yml', 'file4.yml', 'json', 'result_json_nested.json')])
 def test_stylish_formatter(file1, file2, format_name, result):
-    assert generate_diff(build_fixture_path(file1), build_fixture_path(file2), format_name) == \
-           open(build_fixture_path(result)).read()
+    result = open(build_fixture_path(result)).read()
+    first_file = build_fixture_path(file1)
+    second_file = build_fixture_path(file2)
+    assert generate_diff(first_file, second_file, format_name) == result
