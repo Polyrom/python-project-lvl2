@@ -2,7 +2,7 @@
 
 # Gendiff
 
-#### Command line utility to get fast and nicely-formatted difference between two json or yaml files
+#### Command line utility to get fast and nicely-formatted difference between two json or yaml files of any complexity
 
 
 ## Quick start
