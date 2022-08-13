@@ -11,5 +11,5 @@ def format_diff(diff, formatter):
     if formatter == 'json':
         return format_json(diff)
     raise Exception('Invalid format name.'
-                    'Please select from "stylish", "plain" and "json".'
+                    'Please select from "stylish", "plain" or "json".'
                     'See "gendiff -h" for further info.')
