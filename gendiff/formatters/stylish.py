@@ -8,7 +8,7 @@ def to_str(value):
     return value
 
 
-def iter_(data, depth, replacer=' ', spaces_count=4):
+def iter_(data, depth=0, replacer=' ', spaces_count=4):
 
     prefixes = {
         'added': '+ ',
@@ -61,4 +61,4 @@ def iter_(data, depth, replacer=' ', spaces_count=4):
 
 
 def format_stylish(diff_tree):
-    return iter_(diff_tree, 0)
+    return iter_(diff_tree)

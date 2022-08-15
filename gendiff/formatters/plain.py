@@ -11,9 +11,9 @@ def to_str(val):
     return val
 
 
-def format_plain(diff, path=''):
+def iter_(data, path=''):
     plain_list = []
-    for key, node in diff.items():
+    for key, node in data.items():
         node_children = node.get('children')
         node_value = node.get('value')
         old_value = node.get('value1')
@@ -33,5 +33,9 @@ def format_plain(diff, path=''):
             )
         if node_type == 'nested':
             new_path = f'{path}{key}.'
-            plain_list.append(format_plain(node_children, new_path))
+            plain_list.append(iter_(node_children, new_path))
     return '\n'.join(plain_list)
+
+
+def format_plain(diff_tree):
+    return iter_(diff_tree)

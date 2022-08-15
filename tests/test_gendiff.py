@@ -14,8 +14,9 @@ def build_fixture_path(filename):
                           ('file3.yml', 'file4.json', 'plain', 'result_plain_nested'),
                           ('file1.json', 'file2.json', 'json', 'result_json.json'),
                           ('file3.yml', 'file4.yml', 'json', 'result_json_nested.json')])
-def test_stylish_formatter(file1, file2, format_name, result):
-    result = open(build_fixture_path(result)).read()
+def test_generate_diff(file1, file2, format_name, result):
+    with open(build_fixture_path(result)) as f:
+        result = f.read()
     first_file = build_fixture_path(file1)
     second_file = build_fixture_path(file2)
     assert generate_diff(first_file, second_file, format_name) == result
